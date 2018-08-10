@@ -10,8 +10,10 @@ import akka.actor.ActorSystem;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.StatusCodes;
 import akka.http.javadsl.server.Route;
+import com.farms.models.exceptions.FarmException;
 import com.farms.models.rest.AbstractFarmRestServer;
 import com.farms.models.rest.RestResponse;
+import com.farms.models.rest.RestServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,9 +25,18 @@ import static com.farms.models.Utils.getJsonStringFromObject;
 public class FarmRestServer extends AbstractFarmRestServer {
 
     private final Logger logger = LoggerFactory.getLogger(FarmRestServer.class);
-    private ConcurrentHashMap<String, RestServiceProvider> restServiceProviders = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, Optional<RestServiceProvider>> restServiceProviders = new ConcurrentHashMap<>();
 
-    private RestServiceProvider getRestServiceProvider(String path){
+    public void addRestServiceProvider(Optional<RestServiceProvider> provider){
+        if(!provider.isPresent()) {
+            logger.error("Cannot add RestServiceProvider");
+            throw new FarmException("Cannot add RestServiceProvider");
+        }
+        restServiceProviders.put(provider.get().getPath(), provider);
+        logger.debug("Added RestServiceProvider for {}", provider.get().getPath());
+    }
+
+    private Optional<RestServiceProvider> getRestServiceProvider(String path){
         return restServiceProviders.getOrDefault(path, null);
     }
 
@@ -37,14 +48,15 @@ public class FarmRestServer extends AbstractFarmRestServer {
     protected Route handleRestCall(String method, String body, HttpRequest request){
         String path = request.getUri().getPathString();
         logger.debug("Received URL patn {}", path);
-        RestServiceProvider sp = getRestServiceProvider(path);
-        if(sp!=null){
-            Optional<RestResponse> response = sp.processRestcall(method, body, request);
+        Optional<RestServiceProvider> sp = getRestServiceProvider(path);
+        if(sp.isPresent()){
+            logger.debug("Found the RestServiceProvider for {}", path);
+            Optional<RestResponse> response = sp.get().processRestcall(method, body, request);
             if(response.isPresent()){
-               if(response.get().getStatusCode().equals(StatusCodes.OK) || response.get().getStatusCode().equals(StatusCodes.ACCEPTED))
-                   return complete(response.get().getStatusCode(), getJsonStringFromObject(response.get().getResponse()));
+                return complete(response.get().getStatusCode(), getJsonStringFromObject(response.get().getResponse()));
             }
         }
+        logger.debug("No RestServiceProvider found for {}", path);
         return complete(StatusCodes.NOT_FOUND,"Service not supported");
     }
 }

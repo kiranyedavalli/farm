@@ -1,10 +1,10 @@
 /*
- * Developed  by Kiran Yedavalli on 8/9/18 10:57 PM
- * Last Modified 8/9/18 10:57 PM
+ * Developed  by Kiran Yedavalli on 8/10/18 7:23 AM
+ * Last Modified 8/10/18 7:17 AM
  * Copyright (c) 2018. All rights reserved.
  */
 
-package com.farms;
+package com.farms.models.rest;
 
 import akka.http.javadsl.model.HttpRequest;
 import com.farms.models.rest.RestResponse;

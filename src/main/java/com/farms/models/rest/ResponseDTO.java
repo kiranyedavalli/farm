@@ -6,4 +6,9 @@
 
 package com.farms.models.rest;
 
-public class ResponseDTO extends BaseDTO{}
+public class ResponseDTO extends BaseDTO{
+    private String message;
+    public ResponseDTO(){}
+    public String getMessage(){return this.message;}
+    public ResponseDTO setMessage(String message){this.message=message;return this;}
+}
