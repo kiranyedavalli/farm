@@ -6,10 +6,11 @@
 
 package com.farms.models.purchase;
 
-public class PurchaseInfo {
+import com.farms.models.rest.BaseDTO;
 
-    private String id;
-    private String customerId;
+public class PurchaseDTO extends BaseDTO {
+
+
     private PropertyDetails propertyDetails;
     private PurchaseDetails purchaseDetails;
     private LoanTerms loanTerms;
@@ -24,15 +25,7 @@ public class PurchaseInfo {
     private float purchaseAdditionsCosts;
     private float monthlyRent;
 
-    public PurchaseInfo() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getCustomerId() {
-        return customerId;
+    public PurchaseDTO() {
     }
 
     public PropertyDetails getPropertyDetails() {
@@ -87,77 +80,67 @@ public class PurchaseInfo {
         return monthlyRent;
     }
 
-    public PurchaseInfo setId(String id) {
-        this.id = id;
-        return this;
-    }
-
-    public PurchaseInfo setCustomerId(String customerId) {
-        this.customerId = customerId;
-        return this;
-    }
-
-    public PurchaseInfo setPropertyDetails(PropertyDetails propertyDetails) {
+    public PurchaseDTO setPropertyDetails(PropertyDetails propertyDetails) {
         this.propertyDetails = propertyDetails;
         return this;
     }
 
-    public PurchaseInfo setPurchaseDetails(PurchaseDetails purchaseDetails) {
+    public PurchaseDTO setPurchaseDetails(PurchaseDetails purchaseDetails) {
         this.purchaseDetails = purchaseDetails;
         return this;
     }
 
-    public PurchaseInfo setLoanTerms(LoanTerms loanTerms) {
+    public PurchaseDTO setLoanTerms(LoanTerms loanTerms) {
         this.loanTerms = loanTerms;
         return this;
     }
 
-    public PurchaseInfo setLoanCosts(LoanCosts loanCosts) {
+    public PurchaseDTO setLoanCosts(LoanCosts loanCosts) {
         this.loanCosts = loanCosts;
         return this;
     }
 
-    public PurchaseInfo setGovernmentCosts(GovernmentCosts governmentCosts) {
+    public PurchaseDTO setGovernmentCosts(GovernmentCosts governmentCosts) {
         this.governmentCosts = governmentCosts;
         return this;
     }
 
-    public PurchaseInfo setPrepaids(Prepaids prepaids) {
+    public PurchaseDTO setPrepaids(Prepaids prepaids) {
         this.prepaids = prepaids;
         return this;
     }
 
-    public PurchaseInfo setPropertyManagementDetails(PropertyManagementDetails propertyManagementDetails) {
+    public PurchaseDTO setPropertyManagementDetails(PropertyManagementDetails propertyManagementDetails) {
         this.propertyManagementDetails = propertyManagementDetails;
         return this;
     }
 
-    public PurchaseInfo setInsurance(float insurance) {
+    public PurchaseDTO setInsurance(float insurance) {
         this.insurance = insurance;
         return this;
     }
 
-    public PurchaseInfo setPropertyTaxes(float propertyTaxes) {
+    public PurchaseDTO setPropertyTaxes(float propertyTaxes) {
         this.propertyTaxes = propertyTaxes;
         return this;
     }
 
-    public PurchaseInfo setAssetProtectionCosts(float assetProtectionCosts) {
+    public PurchaseDTO setAssetProtectionCosts(float assetProtectionCosts) {
         this.assetProtectionCosts = assetProtectionCosts;
         return this;
     }
 
-    public PurchaseInfo setPurchaseRepairsCosts(float purchaseRepairsCosts) {
+    public PurchaseDTO setPurchaseRepairsCosts(float purchaseRepairsCosts) {
         this.purchaseRepairsCosts = purchaseRepairsCosts;
         return this;
     }
 
-    public PurchaseInfo setPurchaseAdditionsCosts(float purchaseAdditionsCosts) {
+    public PurchaseDTO setPurchaseAdditionsCosts(float purchaseAdditionsCosts) {
         this.purchaseAdditionsCosts = purchaseAdditionsCosts;
         return this;
     }
 
-    public PurchaseInfo setMonthlyRent(float monthlyRent) {
+    public PurchaseDTO setMonthlyRent(float monthlyRent) {
         this.monthlyRent = monthlyRent;
         return this;
     }

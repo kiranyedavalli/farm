@@ -11,10 +11,14 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.StatusCodes;
 import akka.http.javadsl.server.Route;
 import com.farms.models.rest.AbstractFarmRestServer;
+import com.farms.models.rest.RestResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+
+import static com.farms.models.Utils.getJsonStringFromObject;
 
 public class FarmRestServer extends AbstractFarmRestServer {
 
@@ -35,7 +39,11 @@ public class FarmRestServer extends AbstractFarmRestServer {
         logger.debug("Received URL patn {}", path);
         RestServiceProvider sp = getRestServiceProvider(path);
         if(sp!=null){
-            return sp.processRestcall(method,body);
+            Optional<RestResponse> response = sp.processRestcall(method, body, request);
+            if(response.isPresent()){
+               if(response.get().getStatusCode().equals(StatusCodes.OK) || response.get().getStatusCode().equals(StatusCodes.ACCEPTED))
+                   return complete(response.get().getStatusCode(), getJsonStringFromObject(response.get().getResponse()));
+            }
         }
         return complete(StatusCodes.NOT_FOUND,"Service not supported");
     }

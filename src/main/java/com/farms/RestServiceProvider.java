@@ -6,10 +6,12 @@
 
 package com.farms;
 
-import akka.http.javadsl.model.HttpMethod;
-import akka.http.javadsl.server.Route;
+import akka.http.javadsl.model.HttpRequest;
+import com.farms.models.rest.RestResponse;
+
+import java.util.Optional;
 
 public interface RestServiceProvider {
     String getPath();
-    Route processRestcall(String method, String body);
+    Optional<RestResponse> processRestcall(String method, String body, HttpRequest request);
 }

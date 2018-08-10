@@ -10,7 +10,11 @@ import com.google.gson.GsonBuilder;
 
 public class Utils {
 
-    public static <T> T getObjectFromJsonString(String json, Class<T> t){
-        return new GsonBuilder().create().fromJson(json, t);
+    public static <T> T getObjectFromJsonString(String json, Class<T> klass){
+        return new GsonBuilder().create().fromJson(json, klass);
+    }
+
+    public static <T> String getJsonStringFromObject(T t){
+        return new GsonBuilder().create().toJson(t);
     }
 }
