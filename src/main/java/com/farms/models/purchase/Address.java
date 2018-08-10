@@ -5,10 +5,11 @@
  */
 
 package com.farms.models.purchase;
+import org.apache.commons.lang3.StringUtils;
 
 public class Address {
 
-    private int doorNumber;
+    private String doorNumber;
     private String streetName;
     private String city;
     private String state;
@@ -18,7 +19,7 @@ public class Address {
     public Address() {
     }
 
-    public int getDoorNumber() {
+    public String getDoorNumber() {
         return doorNumber;
     }
 
@@ -42,7 +43,7 @@ public class Address {
         return zipcode;
     }
 
-    public Address setDoorNumber(int doorNumber) {
+    public Address setDoorNumber(String doorNumber) {
         this.doorNumber = doorNumber;
         return this;
     }
@@ -70,5 +71,15 @@ public class Address {
     public Address setZipcode(String zipcode) {
         this.zipcode = zipcode;
         return this;
+    }
+
+    public String stringify(){
+        return new StringBuilder()
+                .append(StringUtils.lowerCase(doorNumber)).append("-")
+                .append(StringUtils.lowerCase(streetName)).append("-")
+                .append(StringUtils.lowerCase(city)).append("-")
+                .append(StringUtils.lowerCase(state)).append("-")
+                .append(StringUtils.lowerCase(zipcode))
+                .toString();
     }
 }

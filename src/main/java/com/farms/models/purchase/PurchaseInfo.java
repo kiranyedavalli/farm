@@ -9,6 +9,7 @@ package com.farms.models.purchase;
 public class PurchaseInfo {
 
     private String id;
+    private String customerId;
     private PropertyDetails propertyDetails;
     private PurchaseDetails purchaseDetails;
     private LoanTerms loanTerms;
@@ -28,6 +29,10 @@ public class PurchaseInfo {
 
     public String getId() {
         return id;
+    }
+
+    public String getCustomerId() {
+        return customerId;
     }
 
     public PropertyDetails getPropertyDetails() {
@@ -84,6 +89,11 @@ public class PurchaseInfo {
 
     public PurchaseInfo setId(String id) {
         this.id = id;
+        return this;
+    }
+
+    public PurchaseInfo setCustomerId(String customerId) {
+        this.customerId = customerId;
         return this;
     }
 
@@ -150,5 +160,10 @@ public class PurchaseInfo {
     public PurchaseInfo setMonthlyRent(float monthlyRent) {
         this.monthlyRent = monthlyRent;
         return this;
+    }
+
+    public String toString(){
+        //TODO: complete this
+        return new StringBuilder().append(monthlyRent).toString();
     }
 }
