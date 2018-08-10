@@ -6,9 +6,13 @@
 
 package com.farms.models.purchase;
 
-import com.farms.models.rest.BaseDTO;
+import com.farms.models.infra.rest.BaseDTO;
 
-public class PurchaseDTO extends BaseDTO {
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class PropertyDTO extends BaseDTO {
 
 
     private PropertyDetails propertyDetails;
@@ -24,8 +28,12 @@ public class PurchaseDTO extends BaseDTO {
     private float purchaseRepairsCosts;
     private float purchaseAdditionsCosts;
     private float monthlyRent;
+    private List<Incidental> repairs = new ArrayList<>();
+    private List<Incidental> additions = new ArrayList<>();
+    private Date addDate;
 
-    public PurchaseDTO() {
+
+    public PropertyDTO() {
     }
 
     public PropertyDetails getPropertyDetails() {
@@ -80,68 +88,95 @@ public class PurchaseDTO extends BaseDTO {
         return monthlyRent;
     }
 
-    public PurchaseDTO setPropertyDetails(PropertyDetails propertyDetails) {
+    public List<Incidental> getRepairs() {
+        return repairs;
+    }
+
+    public List<Incidental> getAdditions() {
+        return additions;
+    }
+
+    public Date getAddDate() {
+        return addDate;
+    }
+
+    public PropertyDTO setPropertyDetails(PropertyDetails propertyDetails) {
         this.propertyDetails = propertyDetails;
         return this;
     }
 
-    public PurchaseDTO setPurchaseDetails(PurchaseDetails purchaseDetails) {
+    public PropertyDTO setPurchaseDetails(PurchaseDetails purchaseDetails) {
         this.purchaseDetails = purchaseDetails;
         return this;
     }
 
-    public PurchaseDTO setLoanTerms(LoanTerms loanTerms) {
+    public PropertyDTO setLoanTerms(LoanTerms loanTerms) {
         this.loanTerms = loanTerms;
         return this;
     }
 
-    public PurchaseDTO setLoanCosts(LoanCosts loanCosts) {
+    public PropertyDTO setLoanCosts(LoanCosts loanCosts) {
         this.loanCosts = loanCosts;
         return this;
     }
 
-    public PurchaseDTO setGovernmentCosts(GovernmentCosts governmentCosts) {
+    public PropertyDTO setGovernmentCosts(GovernmentCosts governmentCosts) {
         this.governmentCosts = governmentCosts;
         return this;
     }
 
-    public PurchaseDTO setPrepaids(Prepaids prepaids) {
+    public PropertyDTO setPrepaids(Prepaids prepaids) {
         this.prepaids = prepaids;
         return this;
     }
 
-    public PurchaseDTO setPropertyManagementDetails(PropertyManagementDetails propertyManagementDetails) {
+    public PropertyDTO setPropertyManagementDetails(PropertyManagementDetails propertyManagementDetails) {
         this.propertyManagementDetails = propertyManagementDetails;
         return this;
     }
 
-    public PurchaseDTO setInsurance(float insurance) {
+    public PropertyDTO setInsurance(float insurance) {
         this.insurance = insurance;
         return this;
     }
 
-    public PurchaseDTO setPropertyTaxes(float propertyTaxes) {
+    public PropertyDTO setPropertyTaxes(float propertyTaxes) {
         this.propertyTaxes = propertyTaxes;
         return this;
     }
 
-    public PurchaseDTO setAssetProtectionCosts(float assetProtectionCosts) {
+    public PropertyDTO setAssetProtectionCosts(float assetProtectionCosts) {
         this.assetProtectionCosts = assetProtectionCosts;
         return this;
     }
 
-    public PurchaseDTO setPurchaseRepairsCosts(float purchaseRepairsCosts) {
+    public PropertyDTO setPurchaseRepairsCosts(float purchaseRepairsCosts) {
         this.purchaseRepairsCosts = purchaseRepairsCosts;
         return this;
     }
 
-    public PurchaseDTO setPurchaseAdditionsCosts(float purchaseAdditionsCosts) {
+    public PropertyDTO setPurchaseAdditionsCosts(float purchaseAdditionsCosts) {
         this.purchaseAdditionsCosts = purchaseAdditionsCosts;
         return this;
     }
 
-    public PurchaseDTO setMonthlyRent(float monthlyRent) {
+    public PropertyDTO setMonthlyRent(float monthlyRent) {
         this.monthlyRent = monthlyRent;
+        return this;
+    }
+
+    public PropertyDTO setRepairs(List<Incidental> repairs) {
+        this.repairs = repairs;
+        return this;
+    }
+
+    public PropertyDTO setAdditions(List<Incidental> additions) {
+        this.additions = additions;
+        return this;
+    }
+
+    public PropertyDTO setAddDate(Date addDate) {
+        this.addDate = addDate;
         return this;
     }
 

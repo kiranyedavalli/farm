@@ -17,6 +17,14 @@ public class PropertyManagementDetails {
     public PropertyManagementDetails() {
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
     public float getNewLeaseRate() {
         return newLeaseRate;
     }
@@ -27,6 +35,16 @@ public class PropertyManagementDetails {
 
     public float getUtilitiesSetupFee() {
         return utilitiesSetupFee;
+    }
+
+    public PropertyManagementDetails setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public PropertyManagementDetails setAddress(Address address) {
+        this.address = address;
+        return this;
     }
 
     public PropertyManagementDetails setNewLeaseRate(float newLeaseRate) {

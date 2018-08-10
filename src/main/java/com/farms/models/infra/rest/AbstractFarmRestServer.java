@@ -1,10 +1,10 @@
 /*
- * Developed  by Kiran Yedavalli on 8/9/18 8:04 PM
- * Last Modified 8/9/18 7:50 PM
+ * Developed  by Kiran Yedavalli on 8/10/18 2:14 PM
+ * Last Modified 8/9/18 11:33 PM
  * Copyright (c) 2018. All rights reserved.
  */
 
-package com.farms.models.rest;
+package com.farms.models.infra.rest;
 
 import akka.NotUsed;
 import akka.actor.ActorSystem;
@@ -15,7 +15,7 @@ import akka.http.javadsl.server.Route;
 import akka.http.javadsl.unmarshalling.Unmarshaller;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
-import com.farms.models.exceptions.FarmException;
+import com.farms.models.infra.FarmException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -7,9 +7,11 @@
 package com.farms.models.purchase;
 
 
+import java.util.Date;
+
 public class PurchaseDetails {
 
-    private String date;
+    private Date date;
     private float listingPrice;
     private float purchasedPrice;
     private float earnestMoney;
@@ -19,7 +21,7 @@ public class PurchaseDetails {
     public PurchaseDetails() {
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -43,7 +45,7 @@ public class PurchaseDetails {
         return costOfInspections;
     }
 
-    public PurchaseDetails setDate(String date) {
+    public PurchaseDetails setDate(Date date) {
         this.date = date;
         return this;
     }

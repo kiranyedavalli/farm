@@ -8,19 +8,18 @@ package com.farms.serviceprovider;
 
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.StatusCodes;
-import com.farms.models.purchase.PurchaseDTO;
-import com.farms.models.rest.ResponseDTO;
-import com.farms.models.rest.RestMethods;
-import com.farms.models.rest.RestResponse;
-import com.farms.models.rest.RestServiceProvider;
+import com.farms.models.purchase.PropertyDTO;
+import com.farms.models.infra.rest.ResponseDTO;
+import com.farms.models.infra.rest.RestMethods;
+import com.farms.models.infra.rest.RestResponse;
+import com.farms.models.infra.rest.RestServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
-import static com.farms.models.Utils.getObjectFromJsonString;
+import static com.farms.models.infra.Utils.getObjectFromJsonString;
 
 public class PurchaseRestServiceProvider implements RestServiceProvider {
 
@@ -34,22 +33,22 @@ public class PurchaseRestServiceProvider implements RestServiceProvider {
         return path;
     }
 
-    private boolean isPostRequestValid(PurchaseDTO dto){
+    private boolean isPostRequestValid(PropertyDTO dto){
         //TODO: complete this
         return true;
     }
 
-    private boolean isPutRequestValid(PurchaseDTO dto){
+    private boolean isPutRequestValid(PropertyDTO dto){
         //TODO: complete this
         return true;
     }
 
-    private Optional<PurchaseDTO> getPurchaseDTOById(String id){
+    private Optional<PropertyDTO> getPurchaseDTOById(String id){
         //TODO: complete this
         return null;
     }
 
-    private BiFunction<PurchaseDTO, String, Optional<RestResponse>> postPutBehavior = (dto, method) -> {
+    private BiFunction<PropertyDTO, String, Optional<RestResponse>> postPutBehavior = (dto, method) -> {
         switch(RestMethods.valueOf(method)){
             case POST:
                 if(!isPostRequestValid(dto)) return Optional.of(new RestResponse(
@@ -73,7 +72,7 @@ public class PurchaseRestServiceProvider implements RestServiceProvider {
         if(!id.isPresent()){
             return Optional.of(new RestResponse(null, StatusCodes.BAD_REQUEST));
         }
-        Optional<PurchaseDTO> dto = getPurchaseDTOById(id.get());
+        Optional<PropertyDTO> dto = getPurchaseDTOById(id.get());
         if(!dto.isPresent()){
             return Optional.of(new RestResponse(null, StatusCodes.NOT_FOUND));
         }
@@ -90,8 +89,8 @@ public class PurchaseRestServiceProvider implements RestServiceProvider {
     };
 
 
-    private Optional<RestResponse> handlePostPutRequest(PurchaseDTO dto, String method,
-                                                        BiFunction<PurchaseDTO, String,
+    private Optional<RestResponse> handlePostPutRequest(PropertyDTO dto, String method,
+                                                        BiFunction<PropertyDTO, String,
                                                                 Optional<RestResponse>> behavior){
         return behavior.apply(dto, method);
     }
@@ -105,7 +104,7 @@ public class PurchaseRestServiceProvider implements RestServiceProvider {
 
     @Override
     public Optional<RestResponse> processRestcall(String method, String body, HttpRequest request) {
-        PurchaseDTO info = getObjectFromJsonString(body, PurchaseDTO.class);
+        PropertyDTO info = getObjectFromJsonString(body, PropertyDTO.class);
         Optional<String> id = request.getUri().query().get("id");
         logger.debug(info.toString());
         switch(RestMethods.valueOf(method)){
