@@ -10,10 +10,11 @@ import akka.actor.ActorSystem;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.StatusCodes;
 import akka.http.javadsl.server.Route;
-import com.farms.models.infra.FarmException;
-import com.farms.models.infra.rest.AbstractFarmRestServer;
-import com.farms.models.infra.rest.RestResponse;
-import com.farms.models.infra.rest.RestServiceProvider;
+import com.farms.models.common.FarmException;
+import com.farms.models.rest.AbstractFarmRestServer;
+import com.farms.models.rest.RestMethods;
+import com.farms.models.rest.RestResponse;
+import com.farms.models.rest.RestServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.farms.models.infra.Utils.getJsonStringFromObject;
+import static com.farms.models.common.Utils.getJsonStringFromObject;
 
 public class FarmRestServer extends AbstractFarmRestServer {
 
@@ -52,7 +53,7 @@ public class FarmRestServer extends AbstractFarmRestServer {
         Optional<RestServiceProvider> sp = getRestServiceProvider(path);
         if(sp.isPresent()){
             logger.debug("Found the RestServiceProvider for {}", path);
-            Optional<RestResponse> response = sp.get().processRestcall(method, body, request);
+            Optional<RestResponse> response = sp.get().processRestcall(RestMethods.valueOf(method), body, request);
             if(response.isPresent()){
                 return complete(response.get().getStatusCode(), getJsonStringFromObject(response.get().getResponse()));
             }
