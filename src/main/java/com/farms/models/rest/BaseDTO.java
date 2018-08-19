@@ -6,28 +6,4 @@
 
 package com.farms.models.rest;
 
-public abstract class BaseDTO {
-
-    private String id;
-    private String customerId;
-
-    public BaseDTO(){}
-
-    public String getId() {
-        return id;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public BaseDTO setId(String id) {
-        this.id = id;
-        return this;
-    }
-
-    public BaseDTO setCustomerId(String customerId) {
-        this.customerId = customerId;
-        return this;
-    }
-}
+public abstract class BaseDTO { }

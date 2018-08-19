@@ -13,10 +13,7 @@ public class RestResponse {
     private BaseDTO response;
     private StatusCode statusCode;
 
-    public RestResponse(BaseDTO response, StatusCode code){
-        this.response = response;
-        this.statusCode = code;
-    }
+    public RestResponse(){}
 
     public BaseDTO getResponse() {
         return response;
@@ -24,5 +21,15 @@ public class RestResponse {
 
     public StatusCode getStatusCode() {
         return statusCode;
+    }
+
+    public RestResponse setResponse(BaseDTO response) {
+        this.response = response;
+        return this;
+    }
+
+    public RestResponse setStatusCode(StatusCode statusCode) {
+        this.statusCode = statusCode;
+        return this;
     }
 }

@@ -6,7 +6,9 @@
 
 package com.farms.serviceprovider.dashboard;
 
-public class PropertySummaryDTO {
+import com.farms.models.rest.BaseDTO;
+
+public class PropertySummaryDTO extends BaseDTO {
 
     private String propertyId;
     private String landlordId;
